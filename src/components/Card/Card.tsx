@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { TCard } from '../../types';
 import Image from '../Image/Image';
 import { convertIsoTimeToNormalDate } from '../../utils';
-import { devices } from '../../constants/breakPoints';
 
 const StyledCard = styled.div`
 	border: 1px;
