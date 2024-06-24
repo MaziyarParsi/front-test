@@ -30,6 +30,12 @@
 		"@typescript-eslint/no-unused-vars": 0,
 		"react/function-component-definition": 0,
 		"react/require-default-props": 0,
-		"no-unused-vars": 0
+		"no-unused-vars": 0,
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		]
 	}
 }
