@@ -1,11 +1,13 @@
-type TCard = {
-	id: number;
-	player: {
-		firstname: string;
-		lastname: string;
-		birthday: string;
-		image: string;
-	};
+type TPlayer = {
+	firstname: string;
+	lastname: string;
+	birthday: string;
+	image: string;
 };
 
-export { TCard };
+type TCard = {
+	id: number;
+	player: TPlayer;
+};
+
+export { TCard, TPlayer };
