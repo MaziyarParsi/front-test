@@ -15,7 +15,7 @@ type IProps = {
 };
 
 const Wrapper = styled.div`
-	height: 48px;
+	height: 58px;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -23,6 +23,8 @@ const Wrapper = styled.div`
 
 const StyledInut = styled.input`
 	border-radius: 6px;
+	padding: 6px 8px;
+	font-size: 14px;
 `;
 
 const TextField: React.FC<IProps> = ({
