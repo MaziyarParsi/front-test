@@ -33,9 +33,7 @@ export function Collection() {
 			{data && (
 				<CardWrapper>
 					<ButtonContainer>
-						<Modal title="add card">
-							<p>hello Dude!</p>
-						</Modal>
+						<Modal title="add card">hello</Modal>
 					</ButtonContainer>
 					<Card id={data[0].id} player={data[0].player} />
 				</CardWrapper>

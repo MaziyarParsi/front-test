@@ -16,6 +16,9 @@ const StyledModal = styled.dialog<{ isOpen: boolean }>`
 	position: fixed;
 	top: 30%;
 	z-index: 999;
+	transform: ${(props) =>
+		props.isOpen ? 'translateX(-100%)' : ' translateX(0)'};
+	transition: transform 0.5s ease-in-out;
 	&::backdrop {
 		background: hsl(0 0% 0% / 50%);
 	}
