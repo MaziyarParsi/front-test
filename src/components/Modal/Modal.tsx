@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import Button from '../Button/Button';
 
 type TModalProps = {
 	children: React.ReactNode;
-	title: string;
+	isModalOpen: boolean;
+	setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const StyledModal = styled.dialog<{ isOpen: boolean }>`
@@ -38,13 +38,13 @@ const ClosedButton = styled.button`
 	background-color: #fff;
 `;
 
-const Modal: React.FC<TModalProps> = ({ children, title }) => {
-	const [isModalOpen, setModalOpen] = useState(false);
+const Modal: React.FC<TModalProps> = ({
+	children,
+	isModalOpen,
+	setModalOpen,
+}) => {
 	const modalRef = useRef<HTMLDialogElement | null>(null);
 
-	const handleOpen = () => {
-		setModalOpen(true);
-	};
 	const handleClose = () => {
 		setModalOpen(false);
 	};
@@ -61,17 +61,13 @@ const Modal: React.FC<TModalProps> = ({ children, title }) => {
 	}, [isModalOpen]);
 
 	return (
-		<>
-			<Button type="primary" htmlType="button" onClick={handleOpen}>
-				{title}
-			</Button>
-			<StyledModal ref={modalRef} isOpen={isModalOpen}>
-				<ClosedButton type="button" onClick={handleClose}>
-					&#x2715;
-				</ClosedButton>
-				{isModalOpen && children}
-			</StyledModal>
-		</>
+		<StyledModal ref={modalRef} isOpen={isModalOpen}>
+			<ClosedButton type="button" onClick={handleClose}>
+				&#x2715;
+			</ClosedButton>
+
+			{isModalOpen && children}
+		</StyledModal>
 	);
 };
 export default Modal;

@@ -4,13 +4,17 @@ import fetchHandler from '../handler/fetchHandler';
 
 type TArguments = {
 	url: string;
-	dependencies?: string[];
+	dependencies?: unknown[];
+};
+type TError = {
+	message: string;
+	status: number;
 };
 
 const useFetch = ({ url, dependencies = [] }: TArguments) => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState<AxiosResponse['data']>(null);
-	const [error, setError] = useState<AxiosError | unknown>(null);
+	const [error, setError] = useState<AxiosError | TError | null>(null);
 
 	const fetchRequest = useCallback(async () => {
 		try {
@@ -18,6 +22,7 @@ const useFetch = ({ url, dependencies = [] }: TArguments) => {
 			const response = await fetchHandler(url);
 			setData(response.data);
 		} catch (err) {
+			// @ts-expect-error should-search-whats-the-issue
 			setError(err);
 		} finally {
 			setLoading(false);

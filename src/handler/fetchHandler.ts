@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { TPostBody } from '../types/Payload';
 // import { errorHandler } from "./errorHandler";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -6,7 +7,7 @@ axios.defaults.withCredentials = true;
 
 interface IPayload extends AxiosRequestConfig {
 	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-	body: Record<string, string | number | undefined> | FormData | File;
+	body: TPostBody;
 }
 
 const fetchHandler = async (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -15,12 +15,17 @@ const BaseForm = styled.form`
 	height: fit-content;
 `;
 
+type TProps = {
+	setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	setRefetch: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 const ButtonWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 `;
 
-const AddCardForm = () => {
+const AddCardForm: FC<TProps> = ({ setModalOpen, setRefetch }) => {
 	const LoginSchema = z.object({
 		firstname: z.string({ message: 'required' }),
 		lastname: z.string({ message: 'required' }),
@@ -45,15 +50,21 @@ const AddCardForm = () => {
 	const { mutate, data, error, loading } = useMutate({
 		url: '/cards',
 		method: 'POST',
+		onSuccess: () => {
+			setModalOpen(false);
+			setRefetch((prev) => !prev);
+		},
 	});
 	// eslint-disable-next-line no-console
 	const onSubmit = (formData: LoginSchemaType) => {
 		const finalData = {
-			...formData,
-			birthday: new Date(formData.birthday).toISOString(),
+			player: {
+				...formData,
+				birthday: new Date(formData.birthday).toISOString(),
+			},
 		};
-		// console.log('data', formData);
-		// mutate(finalData);
+
+		mutate(finalData);
 	};
 
 	return (

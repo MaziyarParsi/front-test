@@ -1,15 +1,22 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 import fetchHandler from '../handler/fetchHandler';
+import { TPostBody } from '../types/Payload';
 
 type TArguments = {
 	url: string;
 	method: 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-	body?: Record<string, string | number | undefined> | FormData | File;
+	body?: TPostBody;
 	dependencies?: string[];
+	onSuccess?: () => void;
 };
 
-const useMutate = ({ url, dependencies = [], method }: TArguments) => {
+const useMutate = ({
+	url,
+	dependencies = [],
+	method,
+	onSuccess,
+}: TArguments) => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState<AxiosResponse['data']>(null);
 	const [error, setError] = useState<AxiosError | unknown>(null);
@@ -23,6 +30,7 @@ const useMutate = ({ url, dependencies = [], method }: TArguments) => {
 					body: formData || {},
 				});
 				setData(response.data);
+				if (onSuccess) onSuccess();
 			} catch (err) {
 				setError(err);
 			} finally {
