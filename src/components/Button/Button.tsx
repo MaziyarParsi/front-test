@@ -13,7 +13,7 @@ type IProps = {
 const PrimaryButton = styled.button<{ size?: IProps['size'] }>`
 	background-color: ${(props) => (props.disabled ? '#6b6b6b' : '#fff')};
 	border-radius: 6px;
-	width: ${(props) => (props.size === 'full' ? '100%' : '32px')};
+	width: ${(props) => (props.size === 'full' ? '100%' : '128px')};
 `;
 const OutlinedButton = styled.button`
 	background-color: transparent;

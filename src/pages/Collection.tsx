@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
-import { Card, Container, Modal } from '../components';
+import { AddCardForm, Card, Container, Modal } from '../components';
 import useFetch from '../hooks/useFetch';
 
 const CardWrapper = styled.div`
@@ -33,7 +33,9 @@ export function Collection() {
 			{data && (
 				<CardWrapper>
 					<ButtonContainer>
-						<Modal title="add card">hello</Modal>
+						<Modal title="add card">
+							<AddCardForm />
+						</Modal>
 					</ButtonContainer>
 					<Card id={data[0].id} player={data[0].player} />
 				</CardWrapper>

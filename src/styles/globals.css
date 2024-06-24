@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -11,6 +12,7 @@
   */
 * {
 	margin: 0;
+	font-family: 'Poppins';
 }
 /*
     Typographic tweaks!

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { FieldErrors } from 'react-hook-form';
+import styled from 'styled-components';
 
 type IProps = {
 	name: string;
@@ -11,6 +12,26 @@ type IProps = {
 	type?: 'text';
 	placeholder?: string;
 };
+
+const Wrapper = styled.div`
+	height: 48px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+`;
+
+const StyledInut = styled.input`
+	border-radius: 6px;
+`;
+
+const Label = styled.p`
+	font-size: 14px;
+`;
+
+const Error = styled.p`
+	font-size: 12px;
+	color: red;
+`;
 
 const TextField: React.FC<IProps> = ({
 	label,
@@ -24,9 +45,9 @@ const TextField: React.FC<IProps> = ({
 	const [value, setValue] = useState(defaultValue || '');
 
 	return (
-		<div>
-			{label && <p>{label}</p>}
-			<input
+		<Wrapper>
+			{label && <Label>{label}</Label>}
+			<StyledInut
 				type={type}
 				placeholder={placeholder}
 				onChange={(evt) => {
@@ -35,12 +56,8 @@ const TextField: React.FC<IProps> = ({
 				}}
 				value={value}
 			/>
-			{error && (
-				<span className="text-sm text-danger mx-2">
-					{error[name]?.message?.toString()}
-				</span>
-			)}
-		</div>
+			{error && <Error>{error[name]?.message?.toString()}</Error>}
+		</Wrapper>
 	);
 };
 

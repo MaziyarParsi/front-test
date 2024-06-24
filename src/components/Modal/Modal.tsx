@@ -9,12 +9,12 @@ type TModalProps = {
 const StyledModal = styled.dialog<{ isOpen: boolean }>`
 	max-width: 20rem;
 	padding: 2rem;
-	margin: 0 auto;
 	border: 0;
 	border-radius: 0.5rem;
 	box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
 	position: fixed;
 	top: 30%;
+	left: 60%;
 	z-index: 999;
 	transform: ${(props) =>
 		props.isOpen ? 'translateX(-100%)' : ' translateX(0)'};
