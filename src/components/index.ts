@@ -5,3 +5,5 @@ export { default as Button } from './Button/Button';
 export { default as TextField } from './TextField/TextField';
 export { default as AddCardForm } from './Forms/AddCardForm';
 export { default as Gap } from './Gap/Gap';
+export { default as Label } from './Label/Label';
+export { default as ErrorText } from './ErrorText/ErrorText';

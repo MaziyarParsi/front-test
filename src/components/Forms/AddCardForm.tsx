@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import styled from 'styled-components';
 import { Button, Gap, TextField } from '../index';
+import useFetch from '../../hooks/useFetch';
 
 const BaseForm = styled.form`
 	display: flex;
@@ -11,6 +12,11 @@ const BaseForm = styled.form`
 	justify-content: space-between;
 	flex-grow: 1;
 	height: fit-content;
+`;
+
+const ButtonWrapper = styled.div`
+	display: flex;
+	justify-content: center;
 `;
 
 const AddCardForm = () => {
@@ -34,7 +40,10 @@ const AddCardForm = () => {
 		mode: 'onChange',
 	});
 	// eslint-disable-next-line no-console
-	const onSubmit = (data: unknown) => console.log(data);
+	const onSubmit = (formData: unknown) => {
+		// eslint-disable-next-line no-console
+		console.log(formData);
+	};
 
 	return (
 		<BaseForm onSubmit={handleSubmit(onSubmit)}>
@@ -96,9 +105,9 @@ const AddCardForm = () => {
 				/>
 			</div>
 			<Gap />
-			<div className="px-4">
+			<ButtonWrapper>
 				<Button htmlType="submit">confirm</Button>
-			</div>
+			</ButtonWrapper>
 		</BaseForm>
 	);
 };

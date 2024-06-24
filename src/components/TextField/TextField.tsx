@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { FieldErrors } from 'react-hook-form';
 import styled from 'styled-components';
+import { Label, ErrorText } from '../index';
 
 type IProps = {
 	name: string;
@@ -22,15 +23,6 @@ const Wrapper = styled.div`
 
 const StyledInut = styled.input`
 	border-radius: 6px;
-`;
-
-const Label = styled.p`
-	font-size: 14px;
-`;
-
-const Error = styled.p`
-	font-size: 12px;
-	color: red;
 `;
 
 const TextField: React.FC<IProps> = ({
@@ -56,7 +48,7 @@ const TextField: React.FC<IProps> = ({
 				}}
 				value={value}
 			/>
-			{error && <Error>{error[name]?.message?.toString()}</Error>}
+			{error && <ErrorText>{error[name]?.message?.toString() || ''}</ErrorText>}
 		</Wrapper>
 	);
 };

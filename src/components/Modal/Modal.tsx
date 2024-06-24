@@ -62,7 +62,7 @@ const Modal: React.FC<TModalProps> = ({ children, title }) => {
 				<ClosedButton type="button" onClick={handleClose}>
 					close
 				</ClosedButton>
-				{children}
+				{isModalOpen && children}
 			</StyledModal>
 		</>
 	);
