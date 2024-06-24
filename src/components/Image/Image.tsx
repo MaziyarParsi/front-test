@@ -1,4 +1,4 @@
-import React, { Children, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import placeHolder from '../../assets/blurry.png';
 

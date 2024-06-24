@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import styled from 'styled-components';
-import { Button, DatePicker, Gap, TextField } from '../index';
+import { Button, DatePicker, ErrorText, Gap, TextField } from '../index';
 import useMutate from '../../hooks/useMutate';
 import { IS_URL_VALID } from '../../constants/regexs';
 
@@ -48,18 +48,20 @@ const AddCardForm: FC<TProps> = ({ setModalOpen, setRefetch }) => {
 		mode: 'onChange',
 	});
 	const { mutate, data, error, loading } = useMutate({
-		url: '/cards',
+		url: '/cardss',
 		method: 'POST',
 		onSuccess: () => {
 			setModalOpen(false);
 			setRefetch((prev) => !prev);
 		},
+		setFormError: setError,
 	});
-	// eslint-disable-next-line no-console
 	const onSubmit = (formData: LoginSchemaType) => {
 		const finalData = {
 			player: {
-				...formData,
+				firstname: formData.firstname,
+				lastname: formData.lastname,
+				image: formData.image,
 				birthday: new Date(formData.birthday).toISOString(),
 			},
 		};
@@ -132,6 +134,8 @@ const AddCardForm: FC<TProps> = ({ setModalOpen, setRefetch }) => {
 					confirm
 				</Button>
 			</ButtonWrapper>
+			{/* @ts-expect-error  uncompatible ts version */}
+			{error && <ErrorText>{error?.message}</ErrorText>}
 		</BaseForm>
 	);
 };
