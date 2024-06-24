@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Card, Container } from '../components';
+import styled from 'styled-components';
+import { Card, Container, Modal } from '../components';
 import useFetch from '../hooks/useFetch';
+
+const CardWrapper = styled.div`
+	background-color: #fff;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 32px;
+`;
+const ButtonContainer = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: end;
+`;
 
 export function Collection() {
 	const { data, loading, error } = useFetch({ url: '/cards' });
@@ -15,9 +31,14 @@ export function Collection() {
 				</div>
 			)}
 			{data && (
-				<div>
+				<CardWrapper>
+					<ButtonContainer>
+						<Modal title="add card">
+							<p>hello Dude!</p>
+						</Modal>
+					</ButtonContainer>
 					<Card id={data[0].id} player={data[0].player} />
-				</div>
+				</CardWrapper>
 			)}
 		</Container>
 	);
