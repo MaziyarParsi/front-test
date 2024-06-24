@@ -31,9 +31,9 @@ const PlayerDetail = styled.div`
 
 const Card: React.FC<TCard> = ({ id, player }) => {
 	return (
-		<StyledCard>
+		<StyledCard key={id}>
 			<ImageHolder>
-				<Image src={id.toString()} alt="player-photo" />
+				<Image src={player.image} alt="player-photo" />
 			</ImageHolder>
 			<PlayerDetail>
 				<p>DOB:</p>

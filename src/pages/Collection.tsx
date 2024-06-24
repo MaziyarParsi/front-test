@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react';
-
-import { fetchCollection } from '../lib/collection';
+import React from 'react';
 
 import { Card, Container } from '../components';
-import fetchHandler from '../handler/fetchHandler';
+import useFetch from '../hooks/useFetch';
 
 export function Collection() {
-	const collection = fetchCollection();
-	const card = collection[0];
+	const { data, loading, error } = useFetch({ url: '/cards' });
 
-	useEffect(() => {
-		fetchHandler('/cards')
-			.then((res) => {})
-			.catch((err) => {});
-	}, []);
-
-	/**
-	 * Step 1: Render the card
-	 */
 	return (
 		<Container>
-			<Card id={card.id} player={card.player} />
+			{loading && <div>data is loading</div>}
+			{error && (
+				<div>
+					<p>{error.message}</p>
+				</div>
+			)}
+			{data && (
+				<div>
+					<Card id={data[0].id} player={data[0].player} />
+				</div>
+			)}
 		</Container>
 	);
 }

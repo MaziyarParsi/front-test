@@ -58,7 +58,7 @@ const Image: FC<TProps> = ({
 	width = '100%',
 	lazyLoading = true,
 }) => {
-	const completeUrl = `${process.env.REACT_APP_BASE_URL}/${src}.png`;
+	// const completeUrl = `${process.env.REACT_APP_BASE_URL}/${src}.png`;
 	const [imgLoaded, setImageLoaded] = useState(false);
 
 	return (
@@ -67,23 +67,23 @@ const Image: FC<TProps> = ({
 			<picture>
 				<source
 					type="image/webp"
-					srcSet={`${completeUrl}?width=100 100w,
-					${completeUrl}?width=200 200w
-					,${completeUrl}?width=400 400w,
-					${completeUrl}?width=800 800w`}
+					srcSet={`${src}?width=100 100w,
+					${src}?width=200 200w
+					,${src}?width=400 400w,
+					${src}?width=800 800w`}
 				/>
 				<StyledImage
-					src={`${completeUrl}`}
+					src={`${src}`}
 					alt={alt}
 					height={height}
 					width={width}
 					loading={lazyLoading ? 'lazy' : 'eager'}
 					onLoad={() => setImageLoaded(true)}
 					imgLoaded={imgLoaded}
-					srcSet={`${completeUrl}?width=100 100w,
-					${completeUrl}?width=200 200w
-					,${completeUrl}?width=400 400w,
-					${completeUrl}?width=800 800w`}
+					srcSet={`${src}?width=100 100w,
+					${src}?width=200 200w
+					,${src}?width=400 400w,
+					${src}?width=800 800w`}
 				/>
 			</picture>
 		</StyledWrapper>
