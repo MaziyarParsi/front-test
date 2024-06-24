@@ -3,8 +3,9 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import styled from 'styled-components';
-import { Button, Gap, TextField } from '../index';
+import { Button, DatePicker, Gap, TextField } from '../index';
 import useMutate from '../../hooks/useMutate';
+import { IS_URL_VALID } from '../../constants/regexs';
 
 const BaseForm = styled.form`
 	display: flex;
@@ -24,7 +25,9 @@ const AddCardForm = () => {
 		firstname: z.string({ message: 'required' }),
 		lastname: z.string({ message: 'required' }),
 		birthday: z.string({ message: 'required' }),
-		image: z.string({ message: 'required' }),
+		image: z.string({ message: 'required' }).regex(new RegExp(IS_URL_VALID), {
+			message: 'type valid url',
+		}),
 	});
 
 	type LoginSchemaType = z.infer<typeof LoginSchema>;
@@ -44,10 +47,13 @@ const AddCardForm = () => {
 		method: 'POST',
 	});
 	// eslint-disable-next-line no-console
-	const onSubmit = (
-		formData: Record<string, string | number | undefined> | FormData | File
-	) => {
-		mutate(formData);
+	const onSubmit = (formData: LoginSchemaType) => {
+		const finalData = {
+			...formData,
+			birthday: new Date(formData.birthday).toISOString(),
+		};
+		// console.log('data', formData);
+		// mutate(finalData);
 	};
 
 	return (
@@ -86,7 +92,7 @@ const AddCardForm = () => {
 					control={control}
 					rules={{ required: true }}
 					render={({ field: { onChange } }) => (
-						<TextField
+						<DatePicker
 							label="birthday"
 							name="birthday"
 							onChange={onChange}
@@ -101,7 +107,7 @@ const AddCardForm = () => {
 					rules={{ required: true }}
 					render={({ field: { onChange } }) => (
 						<TextField
-							label="image"
+							label="image URL"
 							name="image"
 							onChange={onChange}
 							error={errors}
