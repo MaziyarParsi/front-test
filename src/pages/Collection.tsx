@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import styled from 'styled-components';
 import {
 	AddCardForm,
 	Button,
-	Card,
 	Cards,
+	Checkbox,
 	Container,
 	Modal,
 } from '../components';
 import useFetch from '../hooks/useFetch';
+import { TCard } from '../types';
+import { sortList } from '../utils/helper';
 
 const CardWrapper = styled.div`
 	background-color: #fff;
@@ -23,13 +25,15 @@ const CardWrapper = styled.div`
 `;
 const ButtonContainer = styled.div`
 	display: flex;
+	justify-content: space-between;
 	width: 100%;
-	justify-content: end;
 `;
 
 export function Collection() {
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [refetch, setRefetch] = useState(false);
+	const [isSorted, setSorted] = useState(false);
+
 	const { data, loading, error } = useFetch({
 		url: '/cards',
 		dependencies: [refetch],
@@ -37,6 +41,18 @@ export function Collection() {
 
 	const handleOpen = () => {
 		setModalOpen(true);
+	};
+
+	const sortedList: TCard[] = useMemo(() => {
+		if (data) {
+			const sortItems = sortList(data);
+			return sortItems;
+		}
+		return [];
+	}, [data]);
+
+	const handleSort = () => {
+		setSorted(!isSorted);
 	};
 
 	return (
@@ -49,6 +65,7 @@ export function Collection() {
 			{data && (
 				<CardWrapper>
 					<ButtonContainer>
+						<Checkbox onChange={handleSort} />
 						<Button type="primary" htmlType="button" onClick={handleOpen}>
 							add card
 						</Button>
@@ -61,7 +78,9 @@ export function Collection() {
 					</ButtonContainer>
 					{loading && <div>data is loading</div>}
 					{data.length === 0 && !loading && <p>there is nothing to show</p>}
-					{data.length !== 0 && !loading && <Cards data={data} />}
+					{data.length !== 0 && !loading && (
+						<Cards data={isSorted ? sortedList : data} />
+					)}
 				</CardWrapper>
 			)}
 		</Container>

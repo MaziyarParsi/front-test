@@ -38,6 +38,7 @@ const Card: React.FC<TCard> = ({ id, player }) => {
 			<PlayerDetail>
 				<p>DOB:</p>
 				<p>{convertIsoTimeToNormalDate(player.birthday)}</p>
+				<p>{player.firstname}</p>
 			</PlayerDetail>
 		</StyledCard>
 	);

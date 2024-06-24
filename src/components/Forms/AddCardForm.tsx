@@ -41,14 +41,13 @@ const AddCardForm: FC<TProps> = ({ setModalOpen, setRefetch }) => {
 		handleSubmit,
 		control,
 		setError,
-		watch,
 		formState: { errors },
 	} = useForm<LoginSchemaType>({
 		resolver: zodResolver(LoginSchema),
 		mode: 'onChange',
 	});
 	const { mutate, data, error, loading } = useMutate({
-		url: '/cardss',
+		url: '/cards',
 		method: 'POST',
 		onSuccess: () => {
 			setModalOpen(false);

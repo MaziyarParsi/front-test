@@ -9,3 +9,4 @@ export { default as Label } from './Label/Label';
 export { default as ErrorText } from './ErrorText/ErrorText';
 export { default as DatePicker } from './DatePicker/DatePicker';
 export { default as Cards } from './Cards/Cards';
+export { default as Checkbox } from './Checkbox/Checkbox';
