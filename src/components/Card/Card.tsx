@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { TCard } from '../../types';
 import Image from '../Image/Image';
 import { convertIsoTimeToNormalDate } from '../../utils';
+import { devices } from '../../constants/breakPoints';
 
 const StyledCard = styled.div`
 	border: 1px;
@@ -17,13 +18,13 @@ const StyledCard = styled.div`
 
 const ImageHolder = styled.div`
 	flex-grow: 3;
-	width: 100%;
+	/* width: 100%; */
 `;
 
 const PlayerDetail = styled.div`
 	flex-grow: 1;
 	background-color: wheat;
-	width: 100%;
+	/* width: 100%; */
 	display: flex;
 	justify-content: space-between;
 	padding: 0 4px;

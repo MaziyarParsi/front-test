@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
-import { AddCardForm, Button, Card, Container, Modal } from '../components';
+import {
+	AddCardForm,
+	Button,
+	Card,
+	Cards,
+	Container,
+	Modal,
+} from '../components';
 import useFetch from '../hooks/useFetch';
 
 const CardWrapper = styled.div`
 	background-color: #fff;
 	width: 100%;
+	height: fit-content;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -52,7 +60,8 @@ export function Collection() {
 						</Modal>
 					</ButtonContainer>
 					{loading && <div>data is loading</div>}
-					{!loading && <Card id={data[0].id} player={data[0].player} />}
+					{data.length === 0 && !loading && <p>there is nothing to show</p>}
+					{data.length !== 0 && !loading && <Cards data={data} />}
 				</CardWrapper>
 			)}
 		</Container>

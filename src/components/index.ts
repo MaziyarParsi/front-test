@@ -8,3 +8,4 @@ export { default as Gap } from './Gap/Gap';
 export { default as Label } from './Label/Label';
 export { default as ErrorText } from './ErrorText/ErrorText';
 export { default as DatePicker } from './DatePicker/DatePicker';
+export { default as Cards } from './Cards/Cards';
