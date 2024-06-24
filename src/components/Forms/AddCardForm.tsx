@@ -5,6 +5,7 @@ import { z } from 'zod';
 import styled from 'styled-components';
 import { Button, Gap, TextField } from '../index';
 import useFetch from '../../hooks/useFetch';
+import useMutate from '../../hooks/useMutate';
 
 const BaseForm = styled.form`
 	display: flex;
@@ -39,10 +40,15 @@ const AddCardForm = () => {
 		resolver: zodResolver(LoginSchema),
 		mode: 'onChange',
 	});
+	const { mutate, data, error, loading } = useMutate({
+		url: '/cards',
+		method: 'POST',
+	});
 	// eslint-disable-next-line no-console
-	const onSubmit = (formData: unknown) => {
-		// eslint-disable-next-line no-console
-		console.log(formData);
+	const onSubmit = (
+		formData: Record<string, string | number | undefined> | FormData | File
+	) => {
+		mutate(formData);
 	};
 
 	return (
@@ -106,7 +112,9 @@ const AddCardForm = () => {
 			</div>
 			<Gap />
 			<ButtonWrapper>
-				<Button htmlType="submit">confirm</Button>
+				<Button htmlType="submit" disabled={loading}>
+					confirm
+				</Button>
 			</ButtonWrapper>
 		</BaseForm>
 	);
