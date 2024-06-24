@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import Button from '../Button/Button';
 
 type TModalProps = {
 	children: React.ReactNode;
@@ -27,8 +28,14 @@ const StyledModal = styled.dialog<{ isOpen: boolean }>`
 const ClosedButton = styled.button`
 	font-size: 0.75em;
 	position: absolute;
-	top: 0.25em;
-	right: 0.25em;
+	top: 0.75em;
+	right: 0.75em;
+	cursor: pointer;
+	border: 1px solid #3f60e3;
+	font-weight: 500;
+	color: #3f60e3;
+	border-radius: 6px;
+	background-color: #fff;
 `;
 
 const Modal: React.FC<TModalProps> = ({ children, title }) => {
@@ -55,12 +62,12 @@ const Modal: React.FC<TModalProps> = ({ children, title }) => {
 
 	return (
 		<>
-			<button type="button" onClick={handleOpen}>
+			<Button type="primary" htmlType="button" onClick={handleOpen}>
 				{title}
-			</button>
+			</Button>
 			<StyledModal ref={modalRef} isOpen={isModalOpen}>
 				<ClosedButton type="button" onClick={handleClose}>
-					close
+					&#x2715;
 				</ClosedButton>
 				{isModalOpen && children}
 			</StyledModal>

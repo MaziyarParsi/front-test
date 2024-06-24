@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import styled from 'styled-components';
 import { Button, Gap, TextField } from '../index';
-import useFetch from '../../hooks/useFetch';
 import useMutate from '../../hooks/useMutate';
 
 const BaseForm = styled.form`
