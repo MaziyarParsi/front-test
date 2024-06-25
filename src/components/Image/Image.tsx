@@ -43,12 +43,13 @@ const StyledWrapper = styled.div<{ imgLoaded: boolean }>`
 `;
 
 const StyledImage = styled.img<{ imgLoaded: boolean }>`
-	aspect-ratio: 1/1;
-	object-fit: cover;
+	/* aspect-ratio: 1/1; */
+	object-fit: fill;
 	object-position: center;
 	display: block;
 	transition: opacity 200ms ease-in-out;
 	opacity: ${(props) => (props.imgLoaded ? 1 : 0)};
+	height: 248px;
 `;
 
 const Image: FC<TProps> = ({

@@ -10,20 +10,18 @@ const StyledCard = styled.div`
 	border-color: aqua;
 	background-color: #eae8e8;
 	height: 280px;
-	width: 240px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 `;
 
 const ImageHolder = styled.div`
 	flex-grow: 3;
-	/* width: 100%; */
 `;
 
 const PlayerDetail = styled.div`
 	flex-grow: 1;
 	background-color: wheat;
-	/* width: 100%; */
 	display: flex;
 	justify-content: space-between;
 	padding: 0 4px;

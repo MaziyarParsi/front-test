@@ -14,9 +14,7 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	padding: 10px;
 	width: 100%;
-	@media only screen and (${devices.sm}) {
-		grid-template-columns: repeat(2, 1fr);
-	}
+
 	@media only screen and (${devices.md}) {
 		grid-template-columns: repeat(2, 1fr);
 	}
